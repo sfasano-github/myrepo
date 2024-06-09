@@ -9,10 +9,10 @@
   <ItemGroup>
     <Folder Include="wwwroot\" />
     <!-- Incluir los archivos específicos -->
-    <Content Include="wwwroot/iisstart.htm">
+    <Content Include="iisstart.htm">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="wwwroot/iisstart.png">
+    <Content Include="iisstart.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
