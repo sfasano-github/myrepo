@@ -28,11 +28,17 @@ jobs:
       - name: dotnet publish
         run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
 
-      - name: Copy iisstart files
-        run: |
-          mkdir wwwroot
-          cp iisstart.htm wwwroot/
-          cp iisstart.png wwwroot/
+      - name: Upload artifact for deployment job
+        uses: actions/upload-artifact@v3
+        with:
+          name: .net-app
+          path: ${{env.DOTNET_ROOT}}/myapp
+	  
+	  #- name: Copy iisstart files
+      #  run: |
+      #    mkdir wwwroot
+      #    cp iisstart.htm wwwroot/
+      #    cp iisstart.png wwwroot/
 
   deploy:
     runs-on: windows-latest
