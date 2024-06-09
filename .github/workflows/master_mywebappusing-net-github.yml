@@ -1,11 +1,12 @@
 # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 
-name: Build and deploy specific files to Azure Web App - myWebAppUsing-NET-GitHub
+name: Build and deploy ASP.Net Core app to Azure Web App - myWebAppUsing-NET-GitHub
 
 on:
   push:
-    branches: [ "main" ]
+    branches:
+      - master
   workflow_dispatch:
 
 jobs:
@@ -21,18 +22,17 @@ jobs:
           dotnet-version: '8.x'
           include-prerelease: true
 
-      # Copy specific files to a directory for deployment
-      - name: Copy iisstart files
-        run: |
-          mkdir wwwroot
-          cp ./iisstart.htm wwwroot/
-          cp ./iisstart.png wwwroot/
+      - name: Build with dotnet
+        run: dotnet build --configuration Release
+
+      - name: dotnet publish
+        run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
         with:
-          name: deployment-artifact
-          path: wwwroot/
+          name: .net-app
+          path: ${{env.DOTNET_ROOT}}/myapp
 
   deploy:
     runs-on: windows-latest
@@ -40,26 +40,18 @@ jobs:
     environment:
       name: 'Production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
-    permissions:
-      id-token: write # This is required for requesting the JWT
-
+    
     steps:
       - name: Download artifact from build job
         uses: actions/download-artifact@v3
         with:
-          name: deployment-artifact
-
-      - name: Login to Azure
-        uses: azure/login@v1
-        with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID }}
-
+          name: .net-app
+      
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
         with:
           app-name: 'myWebAppUsing-NET-GitHub'
           slot-name: 'Production'
-          package: ${{ runner.workspace }}/deployment
+          package: .
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_0F37C00C91594A1D8B1B88C5192D12F4 }}
