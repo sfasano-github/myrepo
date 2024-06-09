@@ -23,7 +23,7 @@ jobs:
 
       # Copy specific files to a directory for deployment
       - name: Copy iisstart files
-        run: 
+        run: |
           cp iisstart.htm .
           cp iisstart.png .
 
