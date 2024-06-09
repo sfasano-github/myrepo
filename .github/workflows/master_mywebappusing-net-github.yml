@@ -24,8 +24,9 @@ jobs:
       # Copy specific files to a directory for deployment
       - name: Copy iisstart files
         run: |
-          cp ./iisstart.htm ./
-          cp ./iisstart.png ./
+          mkdir wwwroot
+          cp ./iisstart.htm wwwroot/
+          cp ./iisstart.png wwwroot/
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
