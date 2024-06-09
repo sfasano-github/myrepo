@@ -5,8 +5,7 @@ name: Build and deploy ASP.Net Core app to Azure Web App - myWebAppUsing-NET-Git
 
 on:
   push:
-    branches:
-      branches: [ "main" ]
+    branches: [ "main" ]
   workflow_dispatch:
 
 jobs:
