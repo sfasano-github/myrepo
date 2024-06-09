@@ -32,7 +32,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: deployment-artifact
-          path: ${{env.DOTNET_ROOT}}/deployment
+          path: wwwroot/
 
   deploy:
     runs-on: windows-latest
