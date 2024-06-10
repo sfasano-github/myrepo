@@ -63,8 +63,3 @@ jobs:
           app-name: 'myWebAppUsing-NET-GitHub'
           slot-name: 'Production'
           package: .
-
-      - name: Remove unnecessary file
-        run: |
-          rm web.config
-          
