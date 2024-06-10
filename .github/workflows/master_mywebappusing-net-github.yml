@@ -23,10 +23,6 @@ jobs:
           cp iisstart.png deployment/
           cp web.config deployment/
 
-      # Verificar que los archivos se copiaron correctamente
-      - name: Verify files copied
-        run: ls -la deployment
-
       # Login to Azure
       - name: Login to Azure
         uses: azure/login@v1
