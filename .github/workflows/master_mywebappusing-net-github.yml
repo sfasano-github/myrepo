@@ -66,5 +66,5 @@ jobs:
 
       - name: Remove unnecessary file
         run: |
-          sudo rm -Rf web.config
+          rm wwwroot/web.config
           
