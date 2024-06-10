@@ -21,24 +21,18 @@ jobs:
         with:
           dotnet-version: '8.x'
           include-prerelease: true
-
-      - name: Build with dotnet
+	
+	    - name: Build with dotnet
         run: dotnet build --configuration Release
 
       - name: dotnet publish
-        run: dotnet publish -c Release -o myapp
+        run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp/
 
-      - name: Copy specific files
+	  - name: Copy iisstart files
         run: |
-          cp iisstart.htm myapp/
-          cp iisstart.png myapp/
-          cp web.config myapp/
-
-      - name: Upload artifact for deployment job
-        uses: actions/upload-artifact@v3
-        with:
-          name: .net-app
-          path: myapp
+          cp iisstart.htm ${{env.DOTNET_ROOT}}/myapp/
+          cp iisstart.png ${{env.DOTNET_ROOT}}/myapp/
+	      cp web.config ${{env.DOTNET_ROOT}}/myapp/
 
   deploy:
     runs-on: windows-latest
@@ -54,11 +48,11 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: .net-app
-
+      
       - name: Login to Azure
         uses: azure/login@v1
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_9441D37EBD834C06A65FFDE34BEF105 }}
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_9441D37EBD834C06A65FFDE34BE9F105 }}
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_3844120F37EC48F8832B7FBEF27C2498 }}
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_97146B034E8C41E8893B49B47B723B87 }}
 
@@ -68,4 +62,5 @@ jobs:
         with:
           app-name: 'myWebAppUsing-NET-GitHub'
           slot-name: 'Production'
-          package: myapp
+          package: .
+          
