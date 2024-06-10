@@ -18,9 +18,9 @@ jobs:
 
       - name: Copy specific files
         run: |
-          cp iisstart.htm wwwroot/
-          cp iisstart.png wwwroot/
-          cp web.config wwwroot/
+          cp iisstart.htm ./
+          cp iisstart.png ./
+          cp web.config ./
 
   deploy:
     runs-on: windows-latest
