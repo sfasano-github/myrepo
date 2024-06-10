@@ -34,10 +34,6 @@ jobs:
           name: .net-app
           path: ${{env.DOTNET_ROOT}}/myapp
 
-      - name: Remove unnecessary file
-        run: |
-          rm web.config
-
   deploy:
     runs-on: windows-latest
     needs: build
@@ -67,4 +63,8 @@ jobs:
           app-name: 'myWebAppUsing-NET-GitHub'
           slot-name: 'Production'
           package: .
+
+      - name: Remove unnecessary file
+        run: |
+          rm web.config
           
