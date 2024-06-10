@@ -25,6 +25,12 @@ jobs:
     permissions:
       id-token: write #This is required for requesting the JWT
 
+      - name: Copy specific files
+        run: |
+          cp iisstart.htm wwwroot/
+          cp iisstart.png wwwroot/
+          cp web.config wwwroot/
+          
     steps:
       - name: Login to Azure
         uses: azure/login@v1
@@ -33,8 +39,4 @@ jobs:
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_3844120F37EC48F8832B7FBEF27C2498 }}
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_97146B034E8C41E8893B49B47B723B87 }}
 
-       - name: Copy specific files
-        run: |
-          cp iisstart.htm wwwroot/
-          cp iisstart.png wwwroot/
-          cp web.config wwwroot/
+
