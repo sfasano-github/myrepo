@@ -1,0 +1,21 @@
+# .gitignore
+
+# Ignorar las carpetas bin y obj
+bin/
+obj/
+
+# Ignorar archivos de configuración temporales
+*.user
+*.rsuser
+*.suo
+*.userosscache
+*.sln.docstates
+*github*
+web.config
+
+# Ignorar carpetas de publicación y depuración
+publish/
+release/
+debug/
+
+# Puedes agregar más reglas según tus necesidades
