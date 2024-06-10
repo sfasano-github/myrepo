@@ -32,3 +32,9 @@ jobs:
           client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_9441D37EBD834C06A65FFDE34BE9F105 }}
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_3844120F37EC48F8832B7FBEF27C2498 }}
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_97146B034E8C41E8893B49B47B723B87 }}
+
+       - name: Copy specific files
+        run: |
+          cp iisstart.htm wwwroot/
+          cp iisstart.png wwwroot/
+          cp web.config wwwroot/
