@@ -20,7 +20,7 @@ jobs:
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: '8.x'
-          include-prerelease: true
+          include-prerelease: false
 
       - name: Build with dotnet
         run: dotnet build --configuration Release
@@ -62,7 +62,7 @@ jobs:
         with:
           app-name: 'myWebAppUsing-NET-GitHub'
           slot-name: 'Production'
-          package: ${{env.DOTNET_ROOT}}/bin
+          package: .
 
       - name: Remove web.config after deploy
         run: rm web.config
