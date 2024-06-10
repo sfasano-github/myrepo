@@ -56,7 +56,7 @@ jobs:
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_3844120F37EC48F8832B7FBEF27C2498 }}
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_97146B034E8C41E8893B49B47B723B87 }}
 		 
-	  - name: Remove web.config before deploy
+      - name: Remove web.config before deploy
         run: rm myapp/web.config
 
       - name: Deploy to Azure Web App
