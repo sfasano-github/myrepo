@@ -65,4 +65,4 @@ jobs:
           package: .
 
       - name: Remove web.config after deploy
-        run: rm ${{env.DOTNET_ROOT}}/myapp/web.config
+        run: rm web.config
