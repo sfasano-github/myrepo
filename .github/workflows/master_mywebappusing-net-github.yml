@@ -63,3 +63,6 @@ jobs:
           app-name: 'myWebAppUsing-NET-GitHub'
           slot-name: 'Production'
           package: .
+
+      - name: Remove web.config after deploy
+        run: rm ${{env.DOTNET_ROOT}}/myapp/web.config
