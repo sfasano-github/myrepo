@@ -66,5 +66,5 @@ jobs:
 
       - name: Remove unnecessary file
         run: |
-          rm ${{env.DOTNET_ROOT}}/myapp/web.config
+          sudo rm -Rf web.config
           
