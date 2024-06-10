@@ -21,18 +21,24 @@ jobs:
         with:
           dotnet-version: '8.x'
           include-prerelease: true
-	
-	    - name: Build with dotnet
+
+      - name: Build with dotnet
         run: dotnet build --configuration Release
 
       - name: dotnet publish
-        run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp/
+        run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
 
-	  - name: Copy iisstart files
+      - name: Upload artifact for deployment job
+        uses: actions/upload-artifact@v3
+        with:
+          name: .net-app
+          path: ${{env.DOTNET_ROOT}}/myapp
+	
+      - name: Copy iisstart files
         run: |
           cp iisstart.htm ${{env.DOTNET_ROOT}}/myapp/
           cp iisstart.png ${{env.DOTNET_ROOT}}/myapp/
-	      cp web.config ${{env.DOTNET_ROOT}}/myapp/
+	  cp web.config ${{env.DOTNET_ROOT}}/myapp/
 
   deploy:
     runs-on: windows-latest
@@ -63,4 +69,3 @@ jobs:
           app-name: 'myWebAppUsing-NET-GitHub'
           slot-name: 'Production'
           package: .
-          
