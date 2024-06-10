@@ -36,9 +36,9 @@ jobs:
 	
       - name: Copy iisstart files
         run: |
-          cp iisstart.htm ${{env.DOTNET_ROOT}}/myapp/
-          cp iisstart.png ${{env.DOTNET_ROOT}}/myapp/
-	  cp web.config ${{env.DOTNET_ROOT}}/myapp/
+          cp iisstart.htm myapp/
+          cp iisstart.png myapp/
+	  cp web.config myapp/
 
   deploy:
     runs-on: windows-latest
