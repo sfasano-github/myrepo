@@ -36,8 +36,8 @@ jobs:
 
       - name: Remove unwanted files
         run: |
-          rm -f ${{env.DOTNET_ROOT}}/myapp/*github*
-          rm -f ${{env.DOTNET_ROOT}}/myapp/web.config
+          rm ${{env.DOTNET_ROOT}}/myapp/*github*
+          rm ${{env.DOTNET_ROOT}}/myapp/web.config
 
   deploy:
     runs-on: windows-latest
