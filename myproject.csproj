@@ -4,6 +4,7 @@
     <TargetFramework>net8.0</TargetFramework>
     <RootNamespace>myWebAppUsing-NET-GitHub</RootNamespace>
     <AssemblyName>myWebAppUsing-NET-GitHub</AssemblyName>
+    <EnableDefaultContentItems>false</EnableDefaultContentItems>
   </PropertyGroup>
 
   <ItemGroup>
