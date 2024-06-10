@@ -19,9 +19,9 @@ jobs:
       # Copiar los archivos específicos al directorio de despliegue
       - name: Copy specific files
         run: |
-          cp wwwroot/iisstart.htm deployment/
-          cp wwwroot/iisstart.png deployment/
-          cp wwwroot/web.config deployment/
+          cp iisstart.htm deployment/
+          cp iisstart.png deployment/
+          cp web.config deployment/
 
       # Verificar que los archivos se copiaron correctamente
       - name: Verify files copied
