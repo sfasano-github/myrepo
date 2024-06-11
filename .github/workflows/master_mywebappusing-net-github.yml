@@ -32,8 +32,8 @@ jobs:
 
       - name: Copy specific files
         run: |
-          cp iisstart.htm deploy/
-          cp iisstart.png deploy/
+          cp iisstart.htm /
+          cp iisstart.png /
           # Añade aquí cualquier archivo adicional que desees desplegar
           
       - name: Deploy to Azure Web App
@@ -41,4 +41,4 @@ jobs:
         with:
           app-name: 'myWebAppUsing-NET-GitHub'
           slot-name: 'Production'
-          package: deploy
+          package: .
