@@ -30,8 +30,8 @@ jobs:
 
       - name: Remove web.config before packaging
         run: |
-            rm myapp/web.config
-            rm myapp/*github*
+            rm web.config
+            rm *github*
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
