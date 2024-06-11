@@ -11,6 +11,12 @@ on:
 jobs:
   deploy:
     runs-on: windows-latest
+    #needs: build
+    environment:
+      name: 'Production'
+      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+    permissions:
+      id-token: write #This is required for requesting the JWT
 
     steps:
       - uses: actions/checkout@v4
@@ -32,8 +38,8 @@ jobs:
 
       - name: Copy specific files
         run: |
-          cp iisstart.htm /
-          cp iisstart.png /
+          cp iisstart.htm deploy/
+          cp iisstart.png deploy/
           # Añade aquí cualquier archivo adicional que desees desplegar
           
       - name: Deploy to Azure Web App
