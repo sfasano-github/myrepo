@@ -32,16 +32,7 @@ jobs:
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: '8.x'
-
-      - name: Create deployment directory
-        run: mkdir deploy
-
-      - name: Copy specific files
-        run: |
-          cp iisstart.htm deploy/
-          cp iisstart.png deploy/
-          # Añade aquí cualquier archivo adicional que desees desplegar
-          
+        
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v2
         with:
